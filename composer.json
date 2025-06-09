@@ -20,7 +20,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "NovinVision\\SimpleUploader\\ServiceProvider"
+                "NovinVision\\SimpleUploader\\SimpleUploaderServiceProvider"
             ]
         }
     }

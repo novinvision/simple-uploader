@@ -3,8 +3,9 @@
 namespace NovinVision\SimpleUploader;
 
 use App\Helpers\Storage;
+use Illuminate\Support\ServiceProvider;
 
-class ServiceProvider extends \Illuminate\Support\ServiceProvider
+class SimpleUploaderServiceProvider  extends ServiceProvider
 {
     public function register()
     {
