@@ -12,7 +12,10 @@
     "autoload": {
         "psr-4": {
             "NovinVision\\SimpleUploader\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers/functions.php"
+        ]
     },
     "require": {
         "laravel/framework": "^9.0|^10.0|^11.0"
