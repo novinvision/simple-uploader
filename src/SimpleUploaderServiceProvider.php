@@ -13,7 +13,7 @@ class SimpleUploaderServiceProvider  extends ServiceProvider
 
     public function boot()
     {
-        \Illuminate\Support\Facades\Validator::extend('file_path', function ($attribute, $value, $parameters, $validator) {
+        \Illuminate\Support\Facades\Validator::extend('simple_file', function ($attribute, $value, $parameters, $validator) {
             return Storage::disk(config('simple-uploader.disk'))->exists((string)$value);
         }, ':attribute وارد شده موجود نیست');
 
