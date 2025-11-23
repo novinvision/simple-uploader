@@ -2,6 +2,7 @@
 
 namespace NovinVision\SimpleUploader;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 
 class SimpleUploaderServiceProvider  extends ServiceProvider
@@ -13,7 +14,8 @@ class SimpleUploaderServiceProvider  extends ServiceProvider
     public function boot()
     {
         \Illuminate\Support\Facades\Validator::extend('simple_file', function ($attribute, $value, $parameters, $validator) {
-            return \Illuminate\Support\Facades\Storage::disk(config('simple-uploader.disk'))->exists((string)$value);
+            $filePath = $value['path'] ?? null;
+            return $filePath && Storage::disk(config('simple-uploader.disk'))->exists($filePath);
         }, ':attribute وارد شده موجود نیست');
 
 
