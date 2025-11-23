@@ -27,6 +27,7 @@ class FilesController extends Controller
     public function delete(Request $request)
     {
         try {
+
             \Illuminate\Support\Facades\Storage::disk(config('simple-uploader.disk'))->delete(file_get_contents('php://input'));
             return [
                 'message' => 'Successfully deleted the file.',
