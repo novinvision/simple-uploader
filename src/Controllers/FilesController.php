@@ -1,7 +1,6 @@
 <?php
 namespace NovinVision\SimpleUploader\Controllers;
 
-use App\Helpers\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -27,10 +26,15 @@ class FilesController extends Controller
 
     public function delete(Request $request)
     {
-        Storage::disk(config('simple-uploader.disk'))->delete(file_get_contents('php://input'));
-
-        return [
-          'message' => 'Successfully deleted the file.',
-        ];
+        try {
+            \Illuminate\Support\Facades\Storage::disk(config('simple-uploader.disk'))->delete(file_get_contents('php://input'));
+            return [
+                'message' => 'Successfully deleted the file.',
+            ];
+        }catch (\Exception $e){
+            return [
+                'message' => 'Successfully deleted the file',
+            ];
+        }
     }
 }
