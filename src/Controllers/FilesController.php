@@ -27,14 +27,16 @@ class FilesController extends Controller
     public function delete(Request $request)
     {
         try {
+            if(config('simple-uploader.allow_delete')){
+                if($request->input('path')){
+                    $path = $request->input('path');
+                }else{
+                    $path = file_get_contents('php://input');
+                }
 
-            if($request->input('path')){
-                $path = $request->input('path');
-            }else{
-                $path = file_get_contents('php://input');
+                \Illuminate\Support\Facades\Storage::disk(config('simple-uploader.disk'))->delete($path);
             }
 
-            \Illuminate\Support\Facades\Storage::disk(config('simple-uploader.disk'))->delete($path);
             return [
                 'message' => 'Successfully deleted the file.',
             ];
